@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASTRO_14477</title>
+<style>
+    body {
+        background-color: black;
+        color: #00ff9c;
+        font-family: "Courier New", monospace;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .scanlines {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            to bottom,
+            rgba(0,255,156,0.05) 0px,
+            rgba(0,255,156,0.05) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+        pointer-events: none;
+    }
+
+    .container {
+        padding: 40px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 3rem;
+        text-shadow: 0 0 10px #00ff9c;
+    }
+
+    .glow {
+        text-shadow: 0 0 5px #00ff9c, 0 0 15px #00ff9c;
+    }
+
+    .box {
+        border: 1px solid #00ff9c;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 0 15px rgba(0,255,156,0.3);
+    }
+
+    .typing {
+        border-right: 2px solid #00ff9c;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 4s steps(40, end), blink 1s infinite;
+        width: fit-content;
+    }
+
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+
+    @keyframes blink {
+        50% { border-color: transparent }
+    }
+
+    a {
+        color: #00ff9c;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-shadow: 0 0 10px #00ff9c;
+    }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<div class="container">
+    <h1 class="glow">ASTRO_14477</h1>
+    <p class="typing">> Initializing identity...</p>
+
+    <div class="box">
+        <h2>Profile</h2>
+        <p>Alias: Astro_14477</p>
+        <p>Status: Active</p>
+        <p>Domain: Technology | Programming | Cyber Systems</p>
+        <p>Persona: Quiet. Analytical. Observant.</p>
+    </div>
+
+    <div class="box">
+        <h2>Core Traits</h2>
+        <ul>
+            <li>Tech-focused mindset</li>
+            <li>Strategic thinking</li>
+            <li>High curiosity</li>
+            <li>Low public footprint</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <h2>Projects</h2>
+        <p>> Portfolio under construction...</p>
+        <p>> Future builds: AI, Apps, Systems</p>
+    </div>
+
+    <div class="box">
+        <h2>System Note</h2>
+        <p>
+        This site serves as the official digital terminal of ASTRO_14477.
+        Minimal noise. Maximum signal.
+        </p>
+    </div>
+
+    <p class="glow">[ END OF TRANSMISSION ]</p>
+</div>
+
+</body>
+</html>
