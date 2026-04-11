@@ -1,138 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Astro_14477</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>astro14477.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;800&family=Syne+Mono&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-<link rel="icon" href="77c2e771-ab61-4460-ab44-6257ede4a3ce.png" type="image/x-icon">
-    <!-- PNG format for modern browsers -->
-<link rel="icon" type="image/png" sizes="32x32" href="website2.png">
-    <!-- Apple devices icon -->
-<link rel="apple-touch-icon" sizes="180x180" href="website3.png">
+    :root {
+      --bg: #0d0d0d;
+      --fg: #e8e8e8;
+      --muted2: #555;
+      --accent: #c8ff00;
+    }
 
-<style>
+    html, body { height: 100%; }
+
     body {
-        background-color: black;
-        color: #00ff9c;
-        font-family: "Courier New", monospace;
-        margin: 0;
-        overflow-x: hidden;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      padding: 2.5rem 3rem;
+      display: grid;
+      grid-template-rows: 1fr auto;
     }
 
-    .scanlines {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        background: repeating-linear-gradient(
-            to bottom,
-            rgba(0,255,156,0.05) 0px,
-            rgba(0,255,156,0.05) 1px,
-            transparent 1px,
-            transparent 3px
-        );
-        pointer-events: none;
-    }
+    main { display: flex; flex-direction: column; justify-content: center; gap: 3rem; }
 
-    .container {
-        padding: 40px;
-        max-width: 900px;
-        margin: auto;
+    .label {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--muted2);
+      text-transform: uppercase;
     }
 
     h1 {
-        font-size: 3rem;
-        text-shadow: 0 0 10px #00ff9c;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
     }
 
-    .glow {
-        text-shadow: 0 0 5px #00ff9c, 0 0 15px #00ff9c;
+    h1 span { color: var(--accent); }
+
+    .busy-block { border-left: 1px solid #1e1e1e; padding-left: 1rem; }
+
+    .section-title {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--muted2);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
     }
 
-    .box {
-        border: 1px solid #00ff9c;
-        padding: 20px;
-        margin: 20px 0;
-        box-shadow: 0 0 15px rgba(0,255,156,0.3);
+    .busy-block .items {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted2);
+      line-height: 2;
     }
 
-    .typing {
-        border-right: 2px solid #00ff9c;
-        white-space: nowrap;
-        overflow: hidden;
-        animation: typing 4s steps(40, end), blink 1s infinite;
-        width: fit-content;
-    }
-    .glowtyping {
-        border-right: 2px solid #00ff9c;
-        white-space: nowrap;
-        overflow: hidden;
-        animation: typing 25s steps(40, end), blink 0.15s infinite;
-        width: fit-content;
-        text-shadow: 0 0 5px #00ff9c, 0 0 15px #00ff9c;
+    .busy-block .items a {
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.85;
     }
 
-    @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
+    .busy-block .items a:hover { opacity: 1; }
+
+    .projects { display: flex; flex-direction: column; gap: 2rem; }
+
+    .project {
+      border-left: 1px solid #1e1e1e;
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: border-color 0.2s;
     }
 
-    @keyframes blink {
-        50% { border-color: transparent }
+    .project:hover { border-left-color: var(--accent); }
+
+    .project-name {
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
-    a {
-        color: #00ff9c;
-        text-decoration: none;
+    .project-name a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-family: 'Syne Mono', monospace;
+      opacity: 0.7;
     }
 
-    a:hover {
-        text-shadow: 0 0 10px #00ff9c;
+    .project-name a:hover { opacity: 1; }
+
+    .project-desc {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted2);
+      line-height: 1.9;
+      max-width: 600px;
     }
-</style>
+
+    .project-desc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .project-desc ul li::before {
+      content: "→ ";
+      color: #333;
+    }
+
+    .status-pill {
+      display: inline-block;
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .status-dead { background: #1a1a1a; color: #444; }
+    .status-idea { background: #1a1a1a; color: #555; }
+    .status-wip  { background: #1c1f12; color: #6a7a30; }
+    .status-live { background: #111a0e; color: var(--accent); }
+
+    .tags { margin-top: 2px; }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.6rem;
+      color: #333;
+      background: #1a1a1a;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+
+    .project.redacted { opacity: 0.55; }
+    .project.redacted:hover { border-left-color: #333; opacity: 0.7; }
+
+    .redact {
+      display: inline-block;
+      background: #222;
+      color: #222;
+      border-radius: 2px;
+      user-select: none;
+      padding: 0 4px;
+      font-size: 0.72rem;
+      font-family: 'Syne Mono', monospace;
+    }
+
+    .classified-label {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: #2a2a2a;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+    }
+
+    footer {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted2);
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 0.08em;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid #1a1a1a;
+    }
+  </style>
 </head>
 <body>
+  <main>
 
-<div class="scanlines"></div>
-
-<div class="container">
-    <h1 class="glow">Astro_14477</h1>
-    <p class="typing">> Initializing identity...</p>
-
-    <div class="box">
-        <h2>Profile</h2>
-        <p>Alias: Astro_14477</p>
-        <p>Status: Active</p>
-        <p>Domain: Technology | Programming | Cyber Systems</p>
-        <p>Persona: Retard.</p>
+    <div>
+      <p class="label" style="margin-bottom:2rem">astro14477.com</p>
+      <h1>not<br/>ready<span>.</span></h1>
     </div>
 
-    <div class="box">
-        <h2>Core Traits</h2>
-        <ul>
-            <li>Smart Retard</li>
-            <li>(Il)Legal Activities</li>
-            <li>OSINT</li>
-        </ul>
+    <div class="busy-block">
+      <p class="section-title">currently buried in</p>
+      <div class="items">
+        → buildathon<br/>
+        → ap exams<br/>
+        → robotics<br/>
+        → <a href="https://lamecraft.org" target="_blank">lamecraft.org ↗</a>
+      </div>
     </div>
 
-    <div class="box">
-        <h2>Projects</h2>
-        <p>> Portfolio under construction...</p>
-        <p>> Future builds: AI, Apps, Systems</p>
+    <div class="projects">
+      <p class="section-title">things i've built</p>
+
+      <!-- LameCRAFT -->
+      <div class="project">
+        <span class="status-pill status-live">● live</span>
+        <div class="project-name">
+          LameCRAFT.org
+          <a href="https://lamecraft.org" target="_blank">lamecraft.org ↗</a>
+        </div>
+        <div class="project-desc">
+          self-hosted on my own gaming PC. no cloud, no VPS — raw home internet behind a Cloudflare tunnel.<br/>
+          FastAPI backend, full static file server with GZip, CORS, and path traversal protection.<br/><br/>
+          <ul>
+            <li>control panel — live CPU/RAM/network graphs (120s rolling), per-core bars, animated gauges with peak markers</li>
+            <li>lag spike detection with real-time alerts, session event log, full logging (events, requests, metrics, errors) — archived after each session</li>
+            <li>auto-starts at boot — runs even when the machine is locked or unattended, retries on failure</li>
+            <li>vault — per-folder password auth, in-browser file preview (text / code / JSON / images), drag-and-drop upload with particle animation and live progress</li>
+            <li>admin panel — live dashboard, password manager, file tree browser with delete, upload queue, per-folder storage quotas, full timestamped audit log</li>
+            <li>change master password from the browser — no restart needed</li>
+          </ul>
+        </div>
+        <div class="tags">
+          <span class="tag">python</span>
+          <span class="tag">fastapi</span>
+          <span class="tag">tkinter</span>
+          <span class="tag">cloudflare tunnel</span>
+          <span class="tag">self-hosted</span>
+        </div>
+      </div>
+
+      <!-- Feed Filter -->
+      <div class="project">
+        <span class="status-pill status-dead">abandoned — got lazy</span>
+        <div class="project-name">Feed Filter</div>
+        <div class="project-desc">
+          chrome extension + backend that filters social media feeds using name databases,
+          handle heuristics, bio analysis, and keyword matching.<br/>
+          OAuth for cross-device cache sync. got it working, then stopped caring.
+        </div>
+        <div class="tags">
+          <span class="tag">chrome extension</span>
+          <span class="tag">flask</span>
+          <span class="tag">oauth</span>
+          <span class="tag">sqlite</span>
+        </div>
+      </div>
+
+      <!-- Discord OMEGA -->
+      <div class="project">
+        <span class="status-pill status-live">● done</span>
+        <div class="project-name">Discord OMEGA Converter</div>
+        <div class="project-desc">
+          converts 47K messages from HTML export to structured JSON in under 2 seconds.<br/>
+          pure regex + memory-mapped files + multiprocessing. ~31,000 messages/sec. 5 output formats.
+        </div>
+        <div class="tags">
+          <span class="tag">python</span>
+          <span class="tag">multiprocessing</span>
+          <span class="tag">mmap</span>
+        </div>
+      </div>
+
+      <!-- Project Sovereign — REDACTED -->
+      <div class="project redacted">
+        <p class="classified-label">// not here</p>
+        <span class="status-pill status-idea">idea in the making</span>
+        <div class="project-name"><span class="redact">█████████████████</span></div>
+        <div class="project-desc">
+          an AI-driven financial simulation engine. local inference, years of market data, 3D visualization.<br/>
+          the kind of thing that would cost a fortune to run on the cloud.<br/>
+          still designing it. details live elsewhere.
+        </div>
+        <div class="tags">
+          <span class="tag">llm</span>
+          <span class="tag">simulation</span>
+          <span class="tag">3d viz</span>
+          <span class="tag">∎∎∎∎∎∎</span>
+        </div>
+      </div>
+
+      <!-- Shopkeeper App — REDACTED -->
+      <div class="project redacted">
+        <p class="classified-label">// not here either</p>
+        <span class="status-pill status-wip">mvp on the way</span>
+        <div class="project-name"><span class="redact">████████████████████</span></div>
+        <div class="project-desc">
+          a voice-first app built for people the tech industry forgot about.<br/>
+          field research, real interviews, real problem. no typing required.<br/>
+          mvp in progress. details live elsewhere.
+        </div>
+        <div class="tags">
+          <span class="tag">mobile</span>
+          <span class="tag">voice ui</span>
+          <span class="tag">field research</span>
+        </div>
+      </div>
+
+      <!-- Project Clicker — REDACTED -->
+      <div class="project redacted">
+        <p class="classified-label">// definitely not here</p>
+        <span class="status-pill status-wip">prototyping</span>
+        <div class="project-name"><span class="redact">███████████████</span></div>
+        <div class="project-desc">
+          a hardware device. dirt cheap. solves a problem a lot of people have but nobody talks about.<br/>
+          custom PCB, RISC-V microcontroller, 3D printed shell. targeting massive scale.<br/>
+          details stay offline.
+        </div>
+        <div class="tags">
+          <span class="tag">hardware</span>
+          <span class="tag">pcb</span>
+          <span class="tag">risc-v</span>
+          <span class="tag">∎∎∎∎∎∎</span>
+        </div>
+      </div>
+
     </div>
+  </main>
 
-    <div class="box">
-        <h2>System Note</h2>
-        <p>
-        Astro_14477 is the smartest Retard 
-        </p>
-    </div>
-
-    <p class="glowtyping">[ END OF TRANSMISSION ]</p>
-</div>
-
+  <footer>
+    <span>© astro14477</span>
+    <span>check back sometime</span>
+  </footer>
 </body>
 </html>
-
-
